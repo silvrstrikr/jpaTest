@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of all contacts</title>
+    <link href="/css/common.css" rel="stylesheet"/>
+</head>
+<body>
+<h1>List of All Contacts</h1>
+<a th:href="@{/contacts/add}" th:text="#{addContact}"/><br>
+<a th:href="@{/contacts/populate}" th:text="#{populate}"/>
+<table>
+    <thead>
+    <tr>
+        <td th:text="#{id}"/>
+        <td th:text="#{firstName}"/>
+        <td th:text="#{lastName}"/>
+        <td th:text="#{email}"/>
+        <td th:text="#{photo}"/>
+        <td th:text="#{update}"/>
+        <td th:text="#{delete}"/>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contact: ${contacts}">
+        <td th:text="${contact.id}"/>
+        <td th:text="${contact.firstname}"/>
+        <td th:text="${contact.lastname}"/>
+        <td th:text="${contact.email}"/>
+        <td><img th:src="${contact.photo}"></td>
+        <td>
+            <a th:text="#{update}" th:href="@{/contacts/update/{id}(id=${contact.id})}"/>
+        </td>
+        <td>
+            <a th:text="#{delete}" th:href="@{/contacts/delete/{id}(id=${contact.id})}" />
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
